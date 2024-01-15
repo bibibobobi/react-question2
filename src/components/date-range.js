@@ -80,7 +80,7 @@ const Calendar = () => {
 
       week.push(
         <div
-          key={currentDate}
+          key={`${currentDate.toISOString()}-${day}`}
           className={`day ${
             isSameMonth(currentDate, activeDate) ? "" : "inactiveDay"
           } ${isSelectedStartDate ? "selectedStartDate" : ""}
@@ -108,15 +108,15 @@ const Calendar = () => {
     const allWeeks = [];
 
     while (currentDate <= endDate) {
-      allWeeks.push(generateDatesForCurrentWeek(currentDate, activeDate));
+      allWeeks.push(
+        <div key={currentDate.toISOString()} className="weekContainer">
+          {generateDatesForCurrentWeek(currentDate, activeDate)}
+        </div>
+      );
       currentDate = addDays(currentDate, 7);
     }
 
-    return (
-      <div key={currentDate.toISOString()} className="weekContainer">
-        {allWeeks}
-      </div>
-    );
+    return <>{allWeeks}</>;
   };
 
   const handleDateClick = (clickedDate) => {

@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render, screen } from "@testing-library/react";
+import React from "react";
+import Calendar from "./components/date-range";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders Calendar component", () => {
+  render(<Calendar />);
+  const headerElement = screen.getByText(/yyyy年M月/i);
+  expect(headerElement).toBeInTheDocument();
+});
+
+test("handles date click correctly", () => {
+  render(<Calendar />);
+  const dateElement = screen.getByText(/1日/i);
+  fireEvent.click(dateElement);
 });
