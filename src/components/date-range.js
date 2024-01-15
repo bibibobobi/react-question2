@@ -10,12 +10,31 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Calendar = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [activeDate, setActiveDate] = useState(new Date());
+
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      // Check if the clicked target is outside the calendar section
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        // Reset selected dates
+        setSelectedStartDate(null);
+        setSelectedEndDate(null);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const getHeader = () => {
     return (
@@ -118,7 +137,7 @@ const Calendar = () => {
   };
 
   return (
-    <section className="section">
+    <section className="section" ref={calendarRef}>
       {getHeader()}
       {getDates()}
     </section>
