@@ -1,38 +1,86 @@
 .App {
   text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  padding: 60px 10px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  @media screen and (min-width: 768px) {
+    padding: 40px 60px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.section {
+  max-width: 350px;
+  margin: auto;
+}
+
+.changeMonth {
+  margin: 0px 20px;
+}
+
+.header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  height: 44px;
+  margin-bottom: 16px;
+}
+
+.currentMonth {
+  font-size: 24px;
+}
+
+.weekContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  height: 40px;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.inactiveDay {
+  color: #9e9e9e;
+}
+.today {
+  background: #ffff76;
+}
+
+.selectedDay {
+  color: white;
+  background: #3366ff;
+}
+
+.navIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.navIcon:hover {
+  background: #e6e6e6;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.selectedStartDate {
+  background-color: #3366ff;
+  color: #fff;
+}
+
+.selectedEndDate {
+  background-color: #3366ff;
+  color: #fff;
+}
+
+.selectedRange {
+  background: #3366ff;
+  color: #fff;
 }
